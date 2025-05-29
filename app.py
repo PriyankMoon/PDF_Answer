@@ -1,6 +1,6 @@
 import streamlit as st
 from PyPDF2 import PdfReader
-from google import genai
+from google.generativeai import genai
 import time
 api_key = st.secrets["api_keys"]["gemini_key"]
 # Initialize client with your API key
