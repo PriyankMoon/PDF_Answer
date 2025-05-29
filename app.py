@@ -1,6 +1,6 @@
 import streamlit as st
 from PyPDF2 import PdfReader
-from google.generativeai import genai
+import google.generativeai as genai
 import time
 
 # Initialize client with your API key
