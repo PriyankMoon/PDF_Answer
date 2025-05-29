@@ -4,7 +4,7 @@ import google.generativeai as genai
 import time
 
 # Initialize client with your API key
-client = genai.Client(api_key=st.secrets["api_keys"]["gemini_key"])
+client = genai.configure(api_key=st.secrets["api_keys"]["gemini_key"])
 
 SYSTEM_PROMPT_PDF = """
 You are a helpful assistant.
@@ -39,10 +39,10 @@ if question:
             # First try to answer from PDF content
             prompt_pdf = f"{SYSTEM_PROMPT_PDF}\n<PDF>\n{st.session_state['pdf_text']}\n</PDF>\n\nUser: {question}"
 
-            response_pdf = client.models.generate_content(
-                model="gemini-2.0-flash",
+            response_pdf = genai.GenerativeModel("gemini-2.0-flash").generate_content(
                 contents=[{"text": prompt_pdf}]
             )
+
             answer_pdf = response_pdf.text.strip()
 
             if "NOT_IN_PDF" in answer_pdf:
