@@ -2,9 +2,9 @@ import streamlit as st
 from PyPDF2 import PdfReader
 from google.generativeai import genai
 import time
-api_key = st.secrets["api_keys"]["gemini_key"]
+
 # Initialize client with your API key
-client = genai.Client(api_key)
+client = genai.Client(api_key=st.secrets["api_keys"]["gemini_key"])
 
 SYSTEM_PROMPT_PDF = """
 You are a helpful assistant.
